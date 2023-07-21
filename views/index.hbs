@@ -1,0 +1,21 @@
+<ul class="list-group mx-auto w-50">
+    <a class="list-group-item container d-flex active mx-2 my-1 border border-white rounded-1" aria-current="page" href="">New Expense</a>
+   
+    <li class="list-group-item container d-flex flex-row justify-content-between mx-2 my-1">
+        <div>
+            <input class="form-check-input align-middle me-2" type="checkbox" name="isDone" {{#if
+                this.isDone}}checked{{/if}} disabled>
+            <span class="align-middle">this.name</span>
+        </div>
+        <div>
+            <button type="button" class="btn btn-secondary btn-sm"><a href="" class="text-reset"
+                    style="text-decoration:none">Detail</a></button>
+            <button type="button" class="btn btn-secondary btn-sm"><a href=""
+                    class="text-reset" style="text-decoration:none">Edit</a></button>
+            <form method="POST" action="" style="display:inline;">
+                <button class="btn btn-outline-warning btn-sm" type="submit">Delete</button>
+            </form>
+        </div>
+
+    </li>
+</ul>

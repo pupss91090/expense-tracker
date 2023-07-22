@@ -6,11 +6,12 @@ const recordSchema = new Schema({
         required: true // 這是個必填欄位
     },
     date: {
-        type: Date,
+        type: String,
         required: true
     },
-    categoryID: {
-        type: Number,
+    categoryId: {
+        type: Schema.Types.ObjectId,
+        ref: 'category',
         required: true
     },
     amount: {

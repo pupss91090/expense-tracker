@@ -8,7 +8,7 @@ db.once('open', () => {
         Record.create({ 
                 name: `name-${i}`,
                 date:  '2023-07-22',
-                categoryID: i/2+1,
+                categoryID: '64bb7fe56c7cdf874cd42e2d',
                 amount: 10*(i+1)
 })
     }

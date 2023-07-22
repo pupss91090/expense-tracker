@@ -4,36 +4,39 @@
             <div class="align-middle fw-bold fs-5">Total Amount:</div>
         </div>
         <div class="align-self-center p-2">
-            <div class="align-middle fw-bold fs-1">this.totalAmount</div>
+            <div class="align-middle fw-bold fs-1" id="totalAmount">{{totalAmount}}</div>
         </div>
     </div>
 </div>
 
 <ul class="list-group mx-auto w-50">
+    {{#each records}}
     <li class="list-group-item container d-flex flex-row justify-content-between mx-2 my-1">
         <div class="d-flex w-75 me-5">
             <div class="align-self-center p-2">
                 <i class="fa-solid fa-house fa-2xl"></i>
             </div>
             <div class="align-self-center p-2">
-                <div class="align-middle fw-bold">this.name</div>
-                <div class="align-middle fw-light">this.date</div>
+                <div class="align-middle fw-bold">{{this.name}}</div>
+                <div class="align-middle fw-light">{{this.date}}</div>
             </div>
             <div class="align-self-center ms-auto p-2">
-                <div class="align-middle fw-bold fs-5">this.cost</div>
+                <div class="align-middle fw-bold fs-5">{{this.amount}}</div>
             </div>
         </div>
         <div class="align-self-center w-25">
-            <button type="button" class="btn btn-secondary btn-sm"><a href="" class="text-reset"
-                    style="text-decoration:none">Edit</a></button>
-            <form method="POST" action="" style="display:inline;">
+            <button type="button" class="btn btn-secondary btn-sm"><a href="/record/{{ this._id }}/edit"
+                    class="text-reset" style="text-decoration:none">Edit</a></button>
+            <form method="POST" action="/record/{{ this._id }}?_method=DELETE" style="display:inline;">
                 <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>
             </form>
         </div>
     </li>
+    {{/each}}
 </ul>
 <div class="mt-3 w-50 mx-auto">
     <div class="d-grid gap-2 col-6 mx-auto bd-dark">
-        <button type="button" class="btn btn-sm btn-outline-warning"><a href="/new" class="text-reset" style="text-decoration:none">New Expense</a></button>
+        <button type="button" class="btn btn-sm btn-outline-warning"><a href="/record/new" class="text-reset"
+                style="text-decoration:none">New Expense</a></button>
     </div>
 </div>

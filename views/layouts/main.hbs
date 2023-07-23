@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expense Tracker</title>
+    <title>{{#if isAuthenticated}}{{user.name}}'s {{/if}}Expense Tracker</title>
     <link href="https://bootswatch.com/5/lux/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
@@ -19,18 +19,19 @@
 <body class="bg-body-tertiary">
 
     <nav class="navbar bg-dark border-bottom border-bottom-dark" data-bs-theme="dark">
-        <div class="container-fluid mx-auto w-50">
-            <a class="navbar-brand mx-2 mb-0 h1" href="/">Expense Tracker</a>
+        <div class="container-fluid mx-auto col-md-6">
+            <a class="navbar-brand mx-2 mb-0 h1" href="/">{{#if isAuthenticated}}{{user.name}}'s {{/if}}Expense
+                Tracker</a>
             <ul class="navbar-nav me-0 mb-2 mb-lg-0">
-                <li class="nav-item">
-
+                <li class="nav-item me-1">
+                    {{#unless isAuthenticated}}
                     <a class="nav-link active px-2 py-1 border border-white rounded-1" aria-current="page"
                         href="/users/login">Login</a>
-
-
+                    {{/unless}}
+                    {{#if isAuthenticated}}
                     <a class="nav-link active px-2 py-1 border border-white rounded-1" aria-current="page"
                         href="/users/logout">Logout</a>
-
+                    {{/if}}
                 </li>
             </ul>
         </div>

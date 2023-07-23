@@ -7,7 +7,6 @@ const User = require('../../models/user')
 const passport = require('passport')
 const bcrypt = require('bcryptjs')  // 載入套件
 
-
 router.get('/login', (req, res) => {
     res.render('login', {})
 })
@@ -28,9 +27,7 @@ router.get('/register', (req, res) => {
 })
 
 router.post('/register', (req, res) => {
-    console.log('request:', req.body)
     const errors = []
-    const success = []
     const { name, email, password, confirmPassword } = req.body
     if (!name || !email || !password || !confirmPassword) {
         errors.push({ message: 'All fields are required!' })

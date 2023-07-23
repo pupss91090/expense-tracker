@@ -15,7 +15,6 @@ router.get('/new', (req, res) => {
 // post create
 router.post('/', (req, res) => {
     const userId = req.user._id
-    console.log('request:', req.body)
     const record = req.body
     // const thisCategory = []
     // let categoryImg = ''
@@ -64,7 +63,6 @@ router.get('/:id/edit', (req, res) => {
             for (let i = 0; i < data.length; i++) {
                 categorys.push(data[i])
             }
-            console.log('categorysin:', categorys)
             return categorys
         })
         .catch(error => console.error(error))
@@ -86,10 +84,6 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id
     const edit = req.body
-    
-    console.log(req.params)
-
-    console.log('request:', req.body)
 
     return Record.findById(id)
         .then(record => {

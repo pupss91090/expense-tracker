@@ -1,31 +1,19 @@
 
-<div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul class="dropdown-menu">
-    <li><a class="dropdown-item" href="#">Action</a></li>
-    <li><a class="dropdown-item" href="#">Another action</a></li>
-    <li><a class="dropdown-item" href="#">Something else here</a></li>
-  </ul>
-</div>
-<!-- -->
-<div class="dropdown mt-3 w-50 mx-auto">
+<div class="dropdown mt-3 col-md-6 m-auto">
     <div class="d-grid gap-2 w-100 mx-auto bd-dark">
     <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
         Search by category...
     </button>
-    <ul class="dropdown-menu">       
-        <li><a class="dropdown-item" href="/record/new">A->Z</a></li>
-        <li><a class="dropdown-item" href="/record/new">Z->A</a></li>
-        <li><a class="dropdown-item" href="/sort/category">類別</a></li>
-        <li><a class="dropdown-item" href="/sort/location">地區</a></li>
+    <ul class="dropdown-menu w-100">
+        {{#each categorys}}              
+        <li><a class="dropdown-item w-100" href="/sort/{{this._id}}">{{this.name}}</a></li>
+        {{/each}}
     </ul>
     </div>
 </div>
 
 
-<div class="my-3 w-50 mx-auto">
+<div class="my-3 col-md-6 m-auto">
     <div class="d-flex me-5">
         <div class="align-self-center p-2">
             <div class="align-middle fw-bold fs-5">Total Amount:</div>
@@ -36,10 +24,10 @@
     </div>
 </div>
 
-<ul class="list-group mx-auto w-50">
+<ul class="list-group col-md-6 m-auto">
     {{#each records}}
     <li class="list-group-item container d-flex flex-row justify-content-between mx-2 my-1">
-        <div class="d-flex  me-5 flex-grow-1">
+        <div class="d-flex me-5 flex-grow-1">
             <div class="align-self-center p-2">
                 <i class="fa-solid fa-house fa-2xl"></i>
             </div>

@@ -53,23 +53,30 @@ router.post('/', (req, res) => {
 router.get('/:id/edit', (req, res) => {
     const id = req.params.id
     const categorys = []
-    const categoryName = recordToCategory(id)
+    let thisRecord = ""
+    let thisCategory = '' //*** 
 
-    console.log(id)
-    console.log(categoryName)
     Category.find()
         .lean()
         .then(data => {
             for (let i = 0; i < data.length; i++) {
                 categorys.push(data[i])
             }
+            console.log('categorysin:', categorys)
             return categorys
         })
+        .catch(error => console.error(error))
 
     Record.findById(id)
         .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-        // .then(record => console.log(record))
-        .then(record => res.render('edit', { record, categorys, categoryName }))
+        .then(data => {
+            return thisRecord = data
+        })
+        .catch(error => console.error(error))
+
+    return Category.findById(thisRecord.categoryId) //***
+        .lean()
+        .then(thisCategory => res.render('edit', { categorys, thisRecord, thisCategory }))
         .catch(error => console.error(error))
 })
 
@@ -77,7 +84,8 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id
     const edit = req.body
-
+    
+    console.log(req.params)
 
     console.log('request:', req.body)
 
@@ -94,7 +102,7 @@ router.put('/:id', (req, res) => {
 })
 
 // delete record
-router.delete('/:id/', (req, res) => {
+router.delete('/:id', (req, res) => {
     const id = req.params.id
 
     return Record.findById(id)

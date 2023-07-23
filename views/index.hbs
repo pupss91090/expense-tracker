@@ -39,7 +39,7 @@
 <ul class="list-group mx-auto w-50">
     {{#each records}}
     <li class="list-group-item container d-flex flex-row justify-content-between mx-2 my-1">
-        <div class="d-flex w-75 me-5">
+        <div class="d-flex  me-5 flex-grow-1">
             <div class="align-self-center p-2">
                 <i class="fa-solid fa-house fa-2xl"></i>
             </div>
@@ -51,8 +51,8 @@
                 <div class="align-middle fw-bold fs-5">{{this.amount}}</div>
             </div>
         </div>
-        <div class="align-self-center w-25">
-            <button type="button" class="btn btn-secondary btn-sm"><a href="/record/{{ this._id }}/edit"
+        <div class="align-self-center">
+            <button type="button" class="btn btn-outline-secondary btn-sm"><a href="/record/{{ this._id }}/edit"
                     class="text-reset" style="text-decoration:none">Edit</a></button>
             <form method="POST" action="/record/{{ this._id }}?_method=DELETE" style="display:inline;">
                 <button class="btn btn-outline-danger btn-sm" type="submit">Delete</button>

@@ -14,6 +14,14 @@ const recordSchema = new Schema({
         ref: 'category',
         required: true
     },
+    // categoryName:{
+    //     type: String,
+    //     required: true
+    // },
+    // categoryImg:{
+    //     type: String,
+    //     required: true
+    // },
     amount: {
         type: Number,
         required: true

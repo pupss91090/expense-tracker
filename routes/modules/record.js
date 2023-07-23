@@ -16,12 +16,34 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
     console.log('request:', req.body)
     const record = req.body
+    // const thisCategory = []
+    // let categoryImg = ''
+    //     Category.findById(record.categoryId)
+    //         .lean()
+    //         .then(category => {
+    //             return categoryImg = category.Img
+    //         })
+
+    // console.log(categoryImg)
+
+
+    // Category.findById(record.categoryId)
+    //     .lean()
+    //     .then(category => {
+    //         for (let i = 0; i < category.length; i++) {
+    //             categoryPack.push(category[i])
+    //         }
+    //         return categoryPack
+    //     })
+
+    // console.log(categoryPack)
 
     return Record.create({
-        name: req.body.item,
-        date: req.body.date,
-        categoryId: req.body.categoryId,
-        amount: req.body.amount
+        name: record.name,
+        date: record.date,
+        categoryId: record.categoryId,
+        // categoryImg: categoryImg,
+        amount: record.amount
     })
         .then(() => res.redirect('/'))
         .catch(error => console.error(error))
@@ -32,7 +54,7 @@ router.get('/:id/edit', (req, res) => {
     const id = req.params.id
     const categorys = []
     const categoryName = recordToCategory(id)
-    
+
     console.log(id)
     console.log(categoryName)
     Category.find()
@@ -55,6 +77,7 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id', (req, res) => {
     const id = req.params.id
     const edit = req.body
+
 
     console.log('request:', req.body)
 

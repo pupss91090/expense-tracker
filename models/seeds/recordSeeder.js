@@ -21,27 +21,21 @@ db.once('open', () => {
         }))
         .then(user => {
             const userId = user._id
-            return Promise.all(Array.from(
-                { length: 10 },
-                (_, i) => Record.create({ name: `name-${i}`, userId, date: `2023-07-22`, categoryID: '64bb7fe56c7cdf874cd42e2d',amount: 10 * (i + 1) })
-            ))
-        })
+            const categoriesId = []
+            
+            Category.find()
+                .then(categorys => {                   
+                    categorys.forEach(category => {
+                        categoriesId.push(category._id)
+                    })// 含有所有類別 _id 的 array
+                    return Promise.all(Array.from(
+                        { length: 10 },
+                        (_, i) => Record.create({ name: `item-${i}`, date: '2023-07-22', userId, categoryId: categoriesId[Math.floor(i/2)] , amount: 10 * (i + 1) })
+                    ))
+                })
+            })
         .then(() => {
             console.log('done.')
-            process.exit()
+            // process.exit()
         })
 })
-
-// // 連線成功
-// db.once('open', () => {
-//     for (let i = 0; i < 10; i++) {
-//         Record.create({ 
-//                 name: `name-${i}`,
-//                 date:  '2023-07-22',
-//                 categoryID: '64bb7fe56c7cdf874cd42e2d',
-//                 amount: 10*(i+1)
-// })
-//     }
-//     console.log('done!')
-// })
-

@@ -52,7 +52,7 @@ router.get('/sort/:sortType', (req, res) => {
             return categorys
         })
 
-    Category.find({ userId: userId, categoryId: categoryId })
+    Record.find({ userId: userId, categoryId: categoryId })
         .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
         // .sort({ isDone: 'asc' })
         .then(records => {

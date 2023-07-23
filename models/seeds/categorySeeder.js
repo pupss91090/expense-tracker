@@ -9,7 +9,6 @@ db.once('open', () => {
     for (let i = 0; i < 5; i++) {
         Record.create({ 
                 name: `${ctgy[i]}`,
-                id: `${i}`,
                 img: `${img[i]}`
 })
     }

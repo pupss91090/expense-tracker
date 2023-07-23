@@ -16,6 +16,7 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
     const userId = req.user._id
     const record = req.body
+    console.log(record)
     // const thisCategory = []
     // let categoryImg = ''
     //     Category.findById(record.categoryId)
@@ -73,12 +74,54 @@ router.get('/:id/edit', (req, res) => {
             return thisRecord = data
         })
         .catch(error => console.error(error))
+// ////////
+//     Record.findById(id)
+//         .then(thisRecord =>
+//             Category.findById(thisRecord.categoryId)
+//                 // .lean()
+//                 .then(category => { return thisCategory = category })
+//         )
 
+//     res.render('edit', { categorys, thisRecord, thisCategory })
+// //////////
     return Category.findById(thisRecord.categoryId) //***
         .lean()
         .then(thisCategory => res.render('edit', { categorys, thisRecord, thisCategory }))
         .catch(error => console.error(error))
 })
+
+// // test
+// router.get('/:id/edit', (req, res) => {
+//     const id = req.params.id
+//     const categorys = []
+//     let thisRecord = ""
+//     let thisCategory = '' //*** 
+
+//     Category.find()
+//         .lean()
+//         .then(data => {
+//             for (let i = 0; i < data.length; i++) {
+//                 categorys.push(data[i])
+//             }
+//             return categorys
+//         })
+//         .catch(error => console.error(error))
+
+//     Record.findById(id)
+//         .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
+//         .then(data => {
+//             return thisRecord = data
+//         })
+//         .catch(error => console.error(error))
+
+//     return Record.findById(id)
+//         .then(thisRecord =>
+//             Category.findById(thisRecord.categoryId)
+//                 .lean()
+//                 .then(thisCategory =>
+//          res.render('edit', { categorys, thisRecord, thisCategory }))
+//         .catch(error => console.error(error)))
+// })
 
 // put edit 
 router.put('/:id', (req, res) => {

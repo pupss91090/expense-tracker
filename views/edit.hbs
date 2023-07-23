@@ -20,7 +20,8 @@
         <div class="input-group my-2">
             <span class="input-group-text">Category</span>
             <select class="form-select" type="text" name="categoryId" aria-label="Default select example"required>
-                <option selected class="text-reset">{{thisCategory.name}}</option>
+                {{!-- <option selected class="text-reset">{{thisRecord.categoryId}}</option> --}}
+                 <option selected class="text-reset">{{thisCategory.name}}</option>
                 {{#each categorys}}
                 <option value="{{this._id}}">{{this.name}}</option>
                 {{/each}}
@@ -37,7 +38,3 @@
         </div>
     </form>
 </div>
-
-{{ thisRecord }}
-{{ thisCategory }}
-{{ categorys }}

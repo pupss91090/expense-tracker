@@ -56,7 +56,6 @@ router.post('/register', (req, res) => {
                     confirmPassword
                 })
             } else {
-                console.log('new user!')
                 req.flash('success_msg', 'Successful registration! Please login.')
                 return bcrypt
                     .genSalt(10) // 產生「鹽」，並設定複雜度係數為 10

@@ -14,6 +14,7 @@ router.get('/new', (req, res) => {
 
 // post create
 router.post('/', (req, res) => {
+    const userId = req.user._id
     console.log('request:', req.body)
     const record = req.body
     // const thisCategory = []
@@ -41,6 +42,7 @@ router.post('/', (req, res) => {
     return Record.create({
         name: record.name,
         date: record.date,
+        userId: userId,
         categoryId: record.categoryId,
         // categoryImg: categoryImg,
         amount: record.amount

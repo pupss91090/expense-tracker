@@ -7,6 +7,7 @@ const Category = require('../../models/category')
 
 // homepage
 router.get('/', (req, res) => {
+    const userId = req.user._id
     let totalAmount = 0
     const categorys = []
 
@@ -19,7 +20,7 @@ router.get('/', (req, res) => {
             return categorys
         })
 
-    Record.find()
+    Record.find({userId:userId})
         .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
         // .sort({ isDone: 'asc' })
         .then(records => {
@@ -29,7 +30,7 @@ router.get('/', (req, res) => {
             return totalAmount
         })
 
-    Record.find()
+    Record.find({userId:userId})
         .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
         .then(records => res.render('index', { records, categorys, totalAmount })) // 將資料傳給 index 樣板
         .catch(error => console.error(error))

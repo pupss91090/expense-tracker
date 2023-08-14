@@ -9,32 +9,35 @@ const Category = require('../../models/category')
 router.get('/', (req, res) => {
     const userId = req.user._id
     let totalAmount = 0
-    const categorys = []
+    const rc = []
 
-    Record.find({ userId: userId })
-        .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-        // .sort({ isDone: 'asc' })
-        .then(records => {
+    return Promise.all([
+        Record.find({ userId: userId }).lean(),
+        Category.find().lean()
+    ])
+        .then(([records, categorys]) => {
             for (let i = 0; i < records.length; i++) {
                 totalAmount += records[i].amount
             }
-            return totalAmount
-        })
 
-    Category.find()
-        .lean()
-        .then(data => {
-            for (let i = 0; i < data.length; i++) {
-                categorys.push(data[i])
+            const cgData = []
+            for (let i = 0; i < categorys.length; i++) {
+                cgData[categorys[i]._id] = categorys[i].img
             }
-            return categorys
+
+            const rc = records.map(r => ({
+                ...r,
+                cgImg: cgData[r.categoryId],
+            }))
+          
+            return res.render('index', {
+                records: rc,
+                categorys,
+                totalAmount
+            })
+
         })
-
-    return Record.find({ userId: userId })
-        .lean() // 把 Mongoose 的 Model 物件轉換成乾淨的 JavaScript 資料陣列
-        .then(records => res.render('index', { records, categorys, totalAmount })) // 將資料傳給 index 樣板
         .catch(error => console.error(error))
-
 })
 
 router.get('/sort/:sortType', (req, res) => {

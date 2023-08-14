@@ -15,19 +15,31 @@ router.get('/new', (req, res) => {
 // post create
 router.post('/', (req, res) => {
     const userId = req.user._id
-    const record = req.body
-    console.log(record)
+    const { name, date, categoryId, amount } = req.body
+    const errors = []
+
+    if (!name || !date || !categoryId || !amount) {
+        errors.push({ message: 'All fields are required!' })
+    } if (errors.length) {
+        return res.render('new', {
+            errors,
+            name,
+            date,
+            categoryId,
+            amount
+        })
+    }
 
     return Record.create({
-        name: record.name,
-        date: record.date,
-        userId: userId,
-        categoryId: record.categoryId,
-        // categoryImg: categoryImg,
-        amount: record.amount
+        name,
+        date,
+        userId,
+        categoryId,
+        amount
     })
         .then(() => res.redirect('/'))
         .catch(error => console.error(error))
+    
 })
 
 // edit

@@ -1,5 +1,6 @@
 <div class="my-3 col-md-6 m-auto">
     <div class="d-flex me-5">
+        {{>message}} 
         <div class="align-self-center p-2">
             <div class="align-middle fw-bold fs-5">Insert your expense here...</div>
         </div>
@@ -9,12 +10,12 @@
     <form method="POST" action="/record">
         <div class="input-group my-2">
             <span class="input-group-text">Item</span>
-            <input class="align-middle form-control ms-4" type="text" name="name" placeholder="Write new item here......"
+            <input class="align-middle form-control ms-4" type="text" name="name" value="{{name}}" placeholder="Write new item here......"
                 size="25" required>
         </div>
         <div class="input-group my-2">
             <span class="input-group-text">Date</span>
-            <input class="align-middle form-control ms-4 me-4" type="date" name="date" 
+            <input class="align-middle form-control ms-4 me-4" type="date" name="date" value="{{date}}"
                 size="25" required>
         </div>
         <div class="input-group my-2">
@@ -29,7 +30,7 @@
         <div class="input-group my-2">
             <span class="input-group-text">Amount</span>
             <span class="input-group-text">$</span>
-            <input class="align-middle form-control ms-1 me-4" type="number"  name="amount" min="1"  placeholder="100" required>
+            <input class="align-middle form-control ms-1 me-4" type="number"  name="amount" value="{{amount}}" min="1"  placeholder="100" required>
         </div>
         <div class="d-grid gap-2 col-6 mx-auto bd-dark my-2">
             <button class="btn btn-outline-warning btn-sm align-middle" type="submit">Create</button>
